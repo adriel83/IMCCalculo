@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         }*/
         Double floatAltura = Double.valueOf(altura.getText().toString());
         Double floatMassa = Double.valueOf(massa.getText().toString());
-        Double imc = (floatAltura/Math.pow(2, floatAltura));
+        Double imc = ((floatAltura)/Math.pow(2, floatMassa));
         resultado.setText(imc.toString());
     }
 }
