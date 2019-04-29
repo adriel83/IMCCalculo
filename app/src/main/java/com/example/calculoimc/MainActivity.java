@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
+//TODO: Máscara na Altura.
 public class MainActivity extends AppCompatActivity {
     Button bt;
     EditText altura;
