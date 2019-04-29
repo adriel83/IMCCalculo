@@ -34,10 +34,10 @@
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputMassa"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintVertical_bias="0.083" />
 
     <EditText
         android:id="@+id/inputMassa"
@@ -51,22 +51,25 @@
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintHorizontal_bias="0.219"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintVertical_bias="0.17" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="44dp"
         android:text="Massa"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="@+id/inputMassa"
         app:layout_constraintEnd_toEndOf="@+id/inputMassa"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/inputMassa" />
+        app:layout_constraintStart_toStartOf="@+id/inputMassa"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974" />
 
     <Button
         android:id="@+id/botaoCalcula"
@@ -82,34 +85,34 @@
         android:text="Calcular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintHorizontal_bias="0.142"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputAltura"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintVertical_bias="0.171" />
 
     <TextView
         android:id="@+id/resultado"
         android:layout_width="60dp"
         android:layout_height="31dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="47dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="328dp"
+        android:layout_marginBottom="28dp"
         android:text="Resultado"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/txResultado"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txResultado"
         app:layout_constraintTop_toBottomOf="@+id/botaoCalcula"
-        app:layout_constraintVertical_bias="0.028" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/txResultado"
         android:layout_width="179dp"
         android:layout_height="27dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Resultado"
@@ -117,9 +120,9 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintHorizontal_bias="0.185"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/resultado"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/botaoCalcula"
+        app:layout_constraintVertical_bias="0.19" />
 
 </android.support.constraint.ConstraintLayout>

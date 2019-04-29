@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         tituloResultado.setVisibility(View.VISIBLE);
         if(imcRound <= 17){
             resultado.setTextColor(Color.GRAY);
-            resultado.setBackgroundColor(Color.WHITE);
+            resultado.setShadowLayer(0,0,0,Color.WHITE);
             tituloResultado.setText("Muito abaixo do peso");
         }
         if(imcRound > 17 && imcRound <= 18.49){
