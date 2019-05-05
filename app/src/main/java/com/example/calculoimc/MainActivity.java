@@ -10,15 +10,21 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 //TODO: Máscara na Altura.
 public class MainActivity extends AppCompatActivity {
     Button bt;
+    RadioGroup rd;
+    RadioButton mas;
+    RadioButton fem;
     EditText altura;
     EditText massa;
     TextView resultado;
     TextView tituloResultado;
+    TextView pesoIdeal;
+    TextView txIdeal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         massa.addTextChangedListener(watcher);
         resultado = findViewById(R.id.resultado);
         tituloResultado = findViewById(R.id.txResultado);
+        mas = findViewById(R.id.radioMasculino);
+        fem = findViewById(R.id.radioFeminino);
+        rd = findViewById(R.id.radioGroup);
+        pesoIdeal = findViewById(R.id.resuIdeal);
+        txIdeal = findViewById(R.id.txIdeal);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,44 +52,58 @@ public class MainActivity extends AppCompatActivity {
         Double floatAltura = Double.valueOf(altura.getText().toString());
         Double floatMassa = Double.valueOf(massa.getText().toString());
         Double imc = (floatMassa)/Math.pow(2, floatAltura);
-        Double imcRound = (double) Math.round(imc * 100) / 100;
-        resultado.setText(imcRound.toString());
+        imc = (double) Math.round(imc * 100) / 100;
+        resultado.setText(imc.toString());
         resultado.setVisibility(View.VISIBLE);
         tituloResultado.setVisibility(View.VISIBLE);
-        if(imcRound <= 17){
+        if(imc <= 17){
             resultado.setTextColor(Color.GRAY);
             resultado.setShadowLayer(0,0,0,Color.WHITE);
             tituloResultado.setText("Muito abaixo do peso");
         }
-        if(imcRound > 17 && imcRound <= 18.49){
+        if(imc > 17 && imc <= 18.49){
             resultado.setTextColor(Color.YELLOW);
             resultado.setShadowLayer(1.6f,1.5f,1.3f,Color.BLACK);
             tituloResultado.setText("Abaixo do peso");
         }
-        if(imcRound >= 18.5 && imcRound <= 24.99){
+        if(imc >= 18.5 && imc <= 24.99){
             resultado.setTextColor(Color.GREEN);
             resultado.setShadowLayer(0,0,0,Color.WHITE);
             tituloResultado.setText("Peso Normal");
         }
-        if(imcRound >= 25 && imcRound <= 29.99){
+        if(imc >= 25 && imc <= 29.99){
             resultado.setTextColor(Color.YELLOW);
             resultado.setShadowLayer(1.6f,1.5f,1.3f,Color.BLACK);
             tituloResultado.setText("Acima do peso");
         }
-        if(imcRound >= 30 && imcRound <= 34.99){
+        if(imc >= 30 && imc <= 34.99){
             resultado.setTextColor(Color.RED);
             resultado.setShadowLayer(0,0,0,Color.WHITE);
             tituloResultado.setText("Obesidade I");
         }
-        if(imcRound >= 35 && imcRound <= 39.99){
+        if(imc >= 35 && imc <= 39.99){
             resultado.setTextColor(Color.rgb(200, 0 ,0));
             resultado.setShadowLayer(0,0,0,Color.WHITE);
             tituloResultado.setText("Obesidade II (severa)");
         }
-        if(imcRound >= 40){
+        if(imc >= 40){
             resultado.setTextColor(Color.rgb(175, 0 ,0));
             resultado.setShadowLayer(0,0,0,Color.WHITE);
             tituloResultado.setText("Obesidade III (mórbida)");
+        }
+        if(rd.getCheckedRadioButtonId() == mas.getId()){
+            double ps = (72.7 * floatAltura -58);
+            ps = (double) Math.round(ps * 100) / 100;
+            pesoIdeal.setText(String.valueOf(ps));
+            pesoIdeal.setVisibility(View.VISIBLE);
+            txIdeal.setVisibility(View.VISIBLE);
+        }
+        if(rd.getCheckedRadioButtonId() == fem.getId()){
+            double ps = (62.1 * floatAltura - 44.7);
+            ps = (double) Math.round(ps * 100) / 100;
+            pesoIdeal.setText(String.valueOf(ps));
+            pesoIdeal.setVisibility(View.VISIBLE);
+            txIdeal.setVisibility(View.VISIBLE);
         }
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(bt.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
