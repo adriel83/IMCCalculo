@@ -25,13 +25,15 @@ public class MainActivity extends AppCompatActivity {
     TextView tituloResultado;
     TextView pesoIdeal;
     TextView txIdeal;
+    Pessoa pessoa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        pessoa = new Pessoa();
         setContentView(R.layout.activity_main);
         bt = findViewById(R.id.botaoCalcula);
         altura = findViewById(R.id.inputAltura);
-        massa = findViewById(R.id.inputMassa);
+        massa = findViewById(R.id.inputPeso);
         altura.addTextChangedListener(watcher);
         massa.addTextChangedListener(watcher);
         resultado = findViewById(R.id.resultado);
@@ -49,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void calculaIMC(){
-        Double floatAltura = Double.valueOf(altura.getText().toString());
-        Double floatMassa = Double.valueOf(massa.getText().toString());
-        Double imc = (floatMassa)/Math.pow(2, floatAltura);
-        imc = (double) Math.round(imc * 100) / 100;
-        resultado.setText(imc.toString());
+        pessoa.setAltura(Double.valueOf(altura.getText().toString()));
+        pessoa.setPeso(Double.valueOf(massa.getText().toString()));
+        Double imc = (pessoa.getPeso())/Math.pow(2, pessoa.getAltura());
+        pessoa.setImc(imc);
+        resultado.setText(Double.toString(pessoa.getImc()));
         resultado.setVisibility(View.VISIBLE);
         tituloResultado.setVisibility(View.VISIBLE);
         if(imc <= 17){
@@ -92,14 +94,14 @@ public class MainActivity extends AppCompatActivity {
             tituloResultado.setText("Obesidade III (mórbida)");
         }
         if(rd.getCheckedRadioButtonId() == mas.getId()){
-            double ps = (72.7 * floatAltura -58);
+            double ps = (72.7 * pessoa.getAltura() -58);
             ps = (double) Math.round(ps * 100) / 100;
             pesoIdeal.setText(String.valueOf(ps));
             pesoIdeal.setVisibility(View.VISIBLE);
             txIdeal.setVisibility(View.VISIBLE);
         }
         if(rd.getCheckedRadioButtonId() == fem.getId()){
-            double ps = (62.1 * floatAltura - 44.7);
+            double ps = (62.1 * pessoa.getAltura() - 44.7);
             ps = (double) Math.round(ps * 100) / 100;
             pesoIdeal.setText(String.valueOf(ps));
             pesoIdeal.setVisibility(View.VISIBLE);
