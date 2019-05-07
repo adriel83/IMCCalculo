@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton mas;
     RadioButton fem;
     EditText altura;
-    EditText massa;
+    EditText peso;
     TextView resultado;
     TextView tituloResultado;
     TextView pesoIdeal;
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bt = findViewById(R.id.botaoCalcula);
         altura = findViewById(R.id.inputAltura);
-        massa = findViewById(R.id.inputPeso);
+        peso = findViewById(R.id.inputPeso);
         altura.addTextChangedListener(watcher);
-        massa.addTextChangedListener(watcher);
+        peso.addTextChangedListener(watcher);
         resultado = findViewById(R.id.resultado);
         tituloResultado = findViewById(R.id.txResultado);
         mas = findViewById(R.id.radioMasculino);
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void calculaIMC(){
         pessoa.setAltura(Double.valueOf(altura.getText().toString()));
-        pessoa.setPeso(Double.valueOf(massa.getText().toString()));
+        pessoa.setPeso(Double.valueOf(peso.getText().toString()));
         Double imc = (pessoa.getPeso())/Math.pow(2, pessoa.getAltura());
         pessoa.setImc(imc);
         resultado.setText(Double.toString(pessoa.getImc()));
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         {}
         @Override
         public void afterTextChanged(Editable s) {
-            if (!(altura.getText().toString().length() == 0 || massa.getText().toString().length() == 0)) {
+            if (!(altura.getText().toString().length() == 0 || peso.getText().toString().length() == 0)) {
                 bt.setEnabled(true);
             }else{
                 bt.setEnabled(false);
