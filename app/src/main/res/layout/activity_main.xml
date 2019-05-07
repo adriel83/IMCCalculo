@@ -15,11 +15,11 @@
         android:layout_marginBottom="44dp"
         android:text="Idade"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/inputAltura2"
-        app:layout_constraintEnd_toEndOf="@+id/inputAltura2"
+        app:layout_constraintBottom_toBottomOf="@+id/inputIdade"
+        app:layout_constraintEnd_toEndOf="@+id/inputIdade"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/inputAltura2"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="@+id/inputIdade"
+        app:layout_constraintTop_toBottomOf="@+id/inputNome"
         app:layout_constraintVertical_bias="0.888" />
 
     <TextView
@@ -31,16 +31,16 @@
         android:maxLength="50"
         android:text="Nome"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
+        app:layout_constraintBottom_toBottomOf="@+id/inputNome"
+        app:layout_constraintEnd_toEndOf="@+id/inputNome"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText"
+        app:layout_constraintStart_toStartOf="@+id/inputNome"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.075" />
 
 
     <EditText
-        android:id="@+id/inputAltura2"
+        android:id="@+id/inputIdade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -49,11 +49,11 @@
         android:layout_marginBottom="36dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/inputMassa"
+        app:layout_constraintBottom_toTopOf="@+id/inputPeso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/inputNome"
         app:layout_constraintVertical_bias="0.85" />
 
     <TextView
@@ -86,7 +86,7 @@
         app:layout_constraintEnd_toEndOf="@+id/inputAltura"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/inputAltura"
-        app:layout_constraintTop_toBottomOf="@+id/inputMassa"
+        app:layout_constraintTop_toBottomOf="@+id/inputPeso"
         app:layout_constraintVertical_bias="0.9" />
 
     <TextView
@@ -120,11 +120,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputMassa"
+        app:layout_constraintTop_toBottomOf="@+id/inputPeso"
         app:layout_constraintVertical_bias="0.081" />
 
     <EditText
-        android:id="@+id/inputMassa"
+        android:id="@+id/inputPeso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -149,10 +149,10 @@
         android:layout_marginBottom="44dp"
         android:text="Peso"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toBottomOf="@+id/inputMassa"
-        app:layout_constraintEnd_toEndOf="@+id/inputMassa"
+        app:layout_constraintBottom_toBottomOf="@+id/inputPeso"
+        app:layout_constraintEnd_toEndOf="@+id/inputPeso"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/inputMassa"
+        app:layout_constraintStart_toStartOf="@+id/inputPeso"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
@@ -172,7 +172,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/inputNome"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.017" />
 
@@ -252,7 +252,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/inputNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
