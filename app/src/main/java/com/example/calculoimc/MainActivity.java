@@ -34,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         bt = findViewById(R.id.botaoCalcula);
         altura = findViewById(R.id.inputAltura);
-        peso = findViewById(R.id.inputAltura);
+        peso = findViewById(R.id.inputPeso);
         altura.addTextChangedListener(watcher);
         peso.addTextChangedListener(watcher);
-        tituloResultado = findViewById(R.id.txIdeal);
+        tituloResultado = findViewById(R.id.txResultado);
         mas = findViewById(R.id.radioMasculino);
         fem = findViewById(R.id.radioFeminino);
         rd = findViewById(R.id.radioGroup);
@@ -56,57 +56,59 @@ public class MainActivity extends AppCompatActivity {
         pessoa.setImc(imc);
         tituloResultado.setVisibility(View.VISIBLE);
         if(imc <= 17){
-//            tituloResultado.setTextColor();
-            tituloResultado.setShadowLayer(0,0,0,Color.WHITE);
             String texto1 = "IMC:" + Double.toString(pessoa.getImc());
             Spannable spannable = new SpannableString(texto1 + "\nMuito abaixo do peso");
             spannable.setSpan(new ForegroundColorSpan(Color.RED),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc > 17 && imc <= 18.49){
-            tituloResultado.setTextColor(Color.YELLOW);
-            tituloResultado.setShadowLayer(1.6f,1.5f,1.3f,Color.BLACK);
-            tituloResultado.setText("Abaixo do peso");
+            String texto1 = "IMC:" + Double.toString(pessoa.getImc());
+            Spannable spannable = new SpannableString(texto1 + "\nAbaixo do peso");
+            spannable.setSpan(new ForegroundColorSpan(Color.YELLOW),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 18.5 && imc <= 24.99){
-            tituloResultado.setTextColor(Color.GREEN);
-            tituloResultado.setShadowLayer(0,0,0,Color.WHITE);
-            tituloResultado.setText("Peso Normal");
+            String texto1 = "IMC:" + Double.toString(pessoa.getImc());
+            Spannable spannable = new SpannableString(texto1 + "\nPeso Normal");
+            spannable.setSpan(new ForegroundColorSpan(Color.GREEN),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 25 && imc <= 29.99){
-            tituloResultado.setTextColor(Color.YELLOW);
-            tituloResultado.setShadowLayer(1.6f,1.5f,1.3f,Color.BLACK);
-            tituloResultado.setText("Acima do peso");
+            String texto1 = "IMC:" + Double.toString(pessoa.getImc());
+            Spannable spannable = new SpannableString(texto1 + "\nAcima do peso");
+            spannable.setSpan(new ForegroundColorSpan(Color.YELLOW),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 30 && imc <= 34.99){
-            tituloResultado.setTextColor(Color.RED);
-            tituloResultado.setShadowLayer(0,0,0,Color.WHITE);
-            tituloResultado.setText("Obesidade I");
+            String texto1 = "IMC:" + Double.toString(pessoa.getImc());
+            Spannable spannable = new SpannableString(texto1 + "\nObesidade I");
+            spannable.setSpan(new ForegroundColorSpan(Color.RED),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 35 && imc <= 39.99){
-            tituloResultado.setTextColor(Color.rgb(200, 0 ,0));
-            tituloResultado.setShadowLayer(0,0,0,Color.WHITE);
-            tituloResultado.setText("Obesidade II (severa)");
+            String texto1 = "IMC:" + Double.toString(pessoa.getImc());
+            Spannable spannable = new SpannableString(texto1 + "\nObesidade II (severa)");
+            spannable.setSpan(new ForegroundColorSpan(Color.rgb(200, 0 ,0)),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 40){
-            tituloResultado.setTextColor(Color.rgb(175, 0 ,0));
-            tituloResultado.setShadowLayer(0,0,0,Color.WHITE);
-            tituloResultado.setText("Obesidade III (mórbida)");
+            String texto1 = "IMC:" + Double.toString(pessoa.getImc());
+            Spannable spannable = new SpannableString(texto1 + "\nObesidade III (mórbida)");
+            spannable.setSpan(new ForegroundColorSpan(Color.rgb(175, 0 ,0)),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
-//        if(rd.getCheckedRadioButtonId() == mas.getId()){
-//            double ps = (72.7 * pessoa.getAltura() -58);
-//            ps = (double) Math.round(ps * 100) / 100;
-//            pesoIdeal.setText(String.valueOf(ps));
-//            pesoIdeal.setVisibility(View.VISIBLE);
-//            txIdeal.setVisibility(View.VISIBLE);
-//        }
-//        if(rd.getCheckedRadioButtonId() == fem.getId()){
-//            double ps = (62.1 * pessoa.getAltura() - 44.7);
-//            ps = (double) Math.round(ps * 100) / 100;
-//            pesoIdeal.setText(String.valueOf(ps));
-//            pesoIdeal.setVisibility(View.VISIBLE);
-//            txIdeal.setVisibility(View.VISIBLE);
-//        }
+        if(rd.getCheckedRadioButtonId() == mas.getId()){
+            double ps = (72.7 * pessoa.getAltura() -58);
+            ps = (double) Math.round(ps * 100) / 100;
+            txIdeal.setText("Peso Ideal:"+String.valueOf(ps));
+            txIdeal.setVisibility(View.VISIBLE);
+        }
+        if(rd.getCheckedRadioButtonId() == fem.getId()){
+            double ps = (62.1 * pessoa.getAltura() - 44.7);
+            ps = (double) Math.round(ps * 100) / 100;
+            txIdeal.setText("Peso Ideal:"+String.valueOf(ps));
+            txIdeal.setVisibility(View.VISIBLE);
+        }
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(bt.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
