@@ -45,11 +45,11 @@ public class MainActivity extends AppCompatActivity {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calculaIMC();
+                calculaIMC(v);
             }
         });
     }
-    public void calculaIMC(){
+    public void calculaIMC(View v){
         pessoa.setAltura(Double.valueOf(altura.getText().toString()));
         pessoa.setPeso(Double.valueOf(peso.getText().toString()));
         Double imc = (pessoa.getPeso())/Math.pow(2, pessoa.getAltura());
