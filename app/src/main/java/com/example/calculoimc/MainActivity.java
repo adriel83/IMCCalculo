@@ -1,6 +1,7 @@
 package com.example.calculoimc;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,9 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -16,9 +20,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-//TODO: Máscara na Altura.
+//TODO: Máscara na Altura, PS: Não se acessa um botão de uma activity em outra activity.....duh.
 public class MainActivity extends AppCompatActivity {
-    Button bt;
+//    Button bt;
     RadioGroup rd;
     RadioButton mas;
     RadioButton fem;
@@ -32,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         pessoa = new Pessoa();
         setContentView(R.layout.activity_main);
-        bt = findViewById(R.id.botaoCalcula);
         altura = findViewById(R.id.inputAltura);
+//        bt = findViewById(R.id.idCalculaIMC);
         peso = findViewById(R.id.inputPeso);
         altura.addTextChangedListener(watcher);
         peso.addTextChangedListener(watcher);
@@ -42,14 +46,8 @@ public class MainActivity extends AppCompatActivity {
         fem = findViewById(R.id.radioFeminino);
         rd = findViewById(R.id.radioGroup);
         txIdeal = findViewById(R.id.txIdeal);
-        bt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculaIMC(v);
-            }
-        });
     }
-    public void calculaIMC(View v){
+    public void calculaIMC(){
         pessoa.setAltura(Double.valueOf(altura.getText().toString()));
         pessoa.setPeso(Double.valueOf(peso.getText().toString()));
         Double imc = (pessoa.getPeso())/Math.pow(2, pessoa.getAltura());
@@ -110,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             txIdeal.setVisibility(View.VISIBLE);
         }
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(bt.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+//        imm.hideSoftInputFromWindow(bt.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
     }
     private final TextWatcher watcher = new TextWatcher() {
@@ -123,10 +121,34 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void afterTextChanged(Editable s) {
             if (!(altura.getText().toString().length() == 0 || peso.getText().toString().length() == 0)) {
-                bt.setEnabled(true);
+//                bt.setEnabled(true);
             }else{
-                bt.setEnabled(false);
+//                bt.setEnabled(false);
             }
         }
     };
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater in = getMenuInflater();
+        in.inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.idConsultaIMC:
+//                    Intent it = new Intent(this, PesquisaActivity.class);
+//                    startActivity(it);
+                return true;
+
+            case R.id.idCalculaIMC:
+                calculaIMC();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
