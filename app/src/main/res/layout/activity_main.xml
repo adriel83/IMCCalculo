@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/txIdeal"
-        android:layout_width="83dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="18dp"
@@ -25,7 +25,7 @@
 
     <TextView
         android:id="@+id/txResultado"
-        android:layout_width="89dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="18dp"

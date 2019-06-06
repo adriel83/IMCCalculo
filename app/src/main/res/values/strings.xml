@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CalculoIMC</string>
+    <string name="title_activity_consulta">Consulta</string>
 </resources>

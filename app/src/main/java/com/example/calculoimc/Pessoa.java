@@ -10,6 +10,15 @@ public class Pessoa {
     private int idade;
     private String uuid;
 
+    public String toString(){
+        return "Nome: '" + nome + '\'' +
+                ", email:'" + email + '\'';
+    }
+
+    public Pessoa(){
+
+    }
+
     public Pessoa(String uuid, String nome, String peso, String idade, String altura, String imc){
         this.uuid = uuid;
         this.nome = nome;

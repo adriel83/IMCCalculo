@@ -166,12 +166,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.idConsultaIMC:
-//                    Intent it = new Intent(this, PesquisaActivity.class);
-//                    startActivity(it);
+                    Intent it = new Intent(this, ConsultaActivity.class);
+                    startActivity(it);
                 return true;
 
             case R.id.idCalculaIMC:
-                calculaIMC();
+//                calculaIMC();
         }
         return super.onOptionsItemSelected(item);
     }
