@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//TODO:A pesquisa traz os resultados mais de uma vez, verificar porque isso acontece
 public class ConsultaActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
