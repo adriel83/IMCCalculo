@@ -9,10 +9,10 @@
 
     <TextView
         android:id="@+id/txIdeal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="83dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="8dp"
         android:text="Resultado"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -25,10 +25,10 @@
 
     <TextView
         android:id="@+id/txResultado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="89dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="18dp"
         android:layout_marginEnd="8dp"
         android:text="Resultado"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -38,14 +38,14 @@
         app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.01999998" />
 
     <EditText
         android:id="@+id/inputPeso"
         android:layout_width="349dp"
         android:layout_height="39dp"
         android:layout_marginStart="31dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="31dp"
         android:ems="10"
         android:hint="Peso (kg)"
@@ -58,13 +58,14 @@
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="335dp"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="38dp"
-        android:layout_marginBottom="109dp"
+        android:layout_marginBottom="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPeso">
 
@@ -87,7 +88,7 @@
         android:layout_width="349dp"
         android:layout_height="39dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Altura (cm)"
@@ -102,7 +103,7 @@
         android:layout_width="349dp"
         android:layout_height="39dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
         android:ems="10"
         android:hint="Idade"
@@ -117,7 +118,7 @@
         android:layout_width="349dp"
         android:layout_height="39dp"
         android:layout_marginStart="31dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="31dp"
         android:ems="10"
         android:hint="Nome"
@@ -126,5 +127,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txIdeal" />
+
+    <Button
+        android:id="@+id/btCalcula"
+        android:layout_width="131dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/inputNome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toEndOf="@+id/txResultado"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.235" />
 
 </android.support.constraint.ConstraintLayout>

@@ -1,11 +1,23 @@
 package com.example.calculoimc;
 
+import java.util.UUID;
+
 public class Pessoa {
     private double altura;
     private double peso;
     private double imc;
     private String nome;
     private int idade;
+    private String uuid;
+
+    public Pessoa(String uuid, String nome, String peso, String idade, String altura, String imc){
+        this.uuid = uuid;
+        this.nome = nome;
+        this.imc = Double.parseDouble(imc);
+        this.peso = Double.parseDouble(peso);
+        this.altura = Double.parseDouble(altura);
+        this.idade = Integer.parseInt(idade);
+    }
 
     public String getNome() {
         return nome;
@@ -48,4 +60,11 @@ public class Pessoa {
         this.imc = imc;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 }
