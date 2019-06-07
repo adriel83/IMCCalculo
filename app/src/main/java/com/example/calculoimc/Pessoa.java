@@ -1,7 +1,8 @@
 package com.example.calculoimc;
 
-import java.util.UUID;
 
+import java.util.Date;
+//TODO:Gravar e ler data de cadastro
 public class Pessoa {
     private double altura;
     private double peso;
@@ -9,24 +10,29 @@ public class Pessoa {
     private String nome;
     private int idade;
     private String uuid;
+    private Date dataCadastro;
 
     public String toString(){
-        return "Nome: '" + nome + '\'' +
-                ", idade:'" + idade + '\''+
-                ", imc:'" + imc + '\'';
+        return "Nome: " + nome +
+                ", Idade:" + idade +
+                ", IMC:" + imc +
+                ", Data:'" + dataCadastro ;
     }
 
     public Pessoa(){
 
     }
 
-    public Pessoa(String uuid, String nome, String peso, String idade, String altura, String imc){
+    Pessoa(String uuid, String nome, String peso, String idade, String altura, String imc, long dataCadastro){
         this.uuid = uuid;
         this.nome = nome;
         this.imc = Double.parseDouble(imc);
         this.peso = Double.parseDouble(peso);
         this.altura = Double.parseDouble(altura);
         this.idade = Integer.parseInt(idade);
+
+//        this.dataCadastro.
+        ;
     }
 
     public String getNome() {
@@ -65,10 +71,7 @@ public class Pessoa {
         return imc;
     }
 
-    public void setImc(double imc) {
-        imc = (double) Math.round(imc * 100) / 100;
-        this.imc = imc;
-    }
+    public void setImc(double imc) { this.imc = imc; }
 
     public String getUuid() {
         return uuid;

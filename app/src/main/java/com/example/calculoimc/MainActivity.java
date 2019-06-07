@@ -24,12 +24,14 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
 import java.util.UUID;
 
-//TODO: Máscara na Altura, PS: Não se acessa um botão de uma activity em outra activity.....duh.
+//TODO: Máscara na Altura.
 public class MainActivity extends AppCompatActivity {
     Button bt;
     DatabaseReference myRef;
+    Date date = new Date();
     Double imc;
     EditText nome;
     EditText idade;
@@ -69,53 +71,54 @@ public class MainActivity extends AppCompatActivity {
                         peso.getText().toString(),
                         idade.getText().toString(),
                         altura.getText().toString(),
-                        imc.toString());
+                        imc.toString(),
+                        date.getTime());
                 myRef.child("Pessoa").child(pessoa.getUuid()).setValue(pessoa);
             }
         });
     }
     public void calculaIMC(){
-        imc = (Double.parseDouble(peso.getText().toString())/Math.pow(2, Double.parseDouble(altura.getText().toString())));
+        imc = (Double.parseDouble(peso.getText().toString())/Math.pow(2, (Double.parseDouble(altura.getText().toString() )/100) ));
         imc = (double) Math.round(imc * 100) / 100;
         tituloResultado.setVisibility(View.VISIBLE);
         if(imc <= 17){
-            String texto1 = "IMC:" + Double.toString(imc);
+            String texto1 = "IMC:" + imc;
             Spannable spannable = new SpannableString(texto1 + "\nMuito abaixo do peso");
             spannable.setSpan(new ForegroundColorSpan(Color.RED),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc > 17 && imc <= 18.49){
-            String texto1 = "IMC:" + Double.toString(imc);
+            String texto1 = "IMC:" + imc;
             Spannable spannable = new SpannableString(texto1 + "\nAbaixo do peso");
             spannable.setSpan(new ForegroundColorSpan(Color.YELLOW),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 18.5 && imc <= 24.99){
-            String texto1 = "IMC:" + Double.toString(imc);
+            String texto1 = "IMC:" + imc;
             Spannable spannable = new SpannableString(texto1 + "\nPeso Normal");
             spannable.setSpan(new ForegroundColorSpan(Color.GREEN),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 25 && imc <= 29.99){
-            String texto1 = "IMC:" + Double.toString(imc);
+            String texto1 = "IMC:" + imc;
             Spannable spannable = new SpannableString(texto1 + "\nAcima do peso");
             spannable.setSpan(new ForegroundColorSpan(Color.YELLOW),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 30 && imc <= 34.99){
-            String texto1 = "IMC:" + Double.toString(imc);
+            String texto1 = "IMC:" + imc;
             Spannable spannable = new SpannableString(texto1 + "\nObesidade I");
             spannable.setSpan(new ForegroundColorSpan(Color.RED),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 35 && imc <= 39.99){
-            String texto1 = "IMC:" + Double.toString(imc);
+            String texto1 = "IMC:" + imc;
             Spannable spannable = new SpannableString(texto1 + "\nObesidade II (severa)");
             spannable.setSpan(new ForegroundColorSpan(Color.rgb(200, 0 ,0)),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 40){
-            String texto1 = "IMC:" + Double.toString(imc);
+            String texto1 = "IMC:" + imc;
             Spannable spannable = new SpannableString(texto1 + "\nObesidade III (mórbida)");
             spannable.setSpan(new ForegroundColorSpan(Color.rgb(175, 0 ,0)),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
@@ -123,13 +126,13 @@ public class MainActivity extends AppCompatActivity {
         if(rd.getCheckedRadioButtonId() == mas.getId()){
             double ps = (72.7 * Double.parseDouble(altura.getText().toString()) -58);
             ps = (double) Math.round(ps * 100) / 100;
-            txIdeal.setText("Peso Ideal:"+String.valueOf(ps));
+            txIdeal.setText("Peso Ideal:"+ ps);
             txIdeal.setVisibility(View.VISIBLE);
         }
         if(rd.getCheckedRadioButtonId() == fem.getId()){
-            double ps = (62.1 * Double.parseDouble(altura.getText().toString()) - 44.7);
+            double ps = (62.1 * (Double.parseDouble(altura.getText().toString())/100)  - 44.7);
             ps = (double) Math.round(ps * 100) / 100;
-            txIdeal.setText("Peso Ideal:"+String.valueOf(ps));
+            txIdeal.setText("Peso Ideal:"+ ps);
             txIdeal.setVisibility(View.VISIBLE);
         }
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -145,10 +148,11 @@ public class MainActivity extends AppCompatActivity {
         {}
         @Override
         public void afterTextChanged(Editable s) {
-            if (!(altura.getText().toString().length() == 0 || peso.getText().toString().length() == 0)) {
-//                bt.setEnabled(true);
-            }else{
-//                bt.setEnabled(false);
+            if (!(altura.getText().toString().length() == 0 ||
+                    peso.getText().toString().length() == 0 ||
+                    nome.getText().toString().length() == 0 ||
+                    idade.getText().toString().length() == 0)) {
+                bt.setEnabled(true);
             }
         }
     };
