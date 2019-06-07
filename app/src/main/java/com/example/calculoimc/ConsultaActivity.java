@@ -64,6 +64,7 @@ public class ConsultaActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
+                listaPessoas.clear();
                 String palavra = nomePesquisa.getText().toString();
                 pesquisarPalavra(palavra);
             }

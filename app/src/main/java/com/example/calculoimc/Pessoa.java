@@ -12,7 +12,8 @@ public class Pessoa {
 
     public String toString(){
         return "Nome: '" + nome + '\'' +
-                ", email:'" + email + '\'';
+                ", idade:'" + idade + '\''+
+                ", imc:'" + imc + '\'';
     }
 
     public Pessoa(){
