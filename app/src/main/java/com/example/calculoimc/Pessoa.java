@@ -8,11 +8,10 @@ public class Pessoa {
     private double peso;
     private double imc;
     private double pesoIdeal;
-    private String nome;
     private int idade;
+    private String nome;
     private String uuid;
     private String dataCadastro;
-    private SimpleDateFormat dtFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
     public String toString(){
         return "Nome: " + nome +
@@ -25,14 +24,14 @@ public class Pessoa {
 
     }
 
-    Pessoa(String uuid, String nome, double peso, int idade, double altura, double imc, long dataCadastro, double pesoIdeal){
+    Pessoa(String uuid, String nome, double peso, int idade, double altura, double imc, String dataCadastro, double pesoIdeal){
         this.uuid = uuid;
         this.nome = nome;
         this.imc = imc;
         this.peso = peso;
         this.altura = altura;
         this.idade = idade;
-        this.dataCadastro = dtFormat.format(dataCadastro);
+        this.dataCadastro = dataCadastro;
         this.pesoIdeal = pesoIdeal;
     }
 

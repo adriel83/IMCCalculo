@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     Button bt;
     DatabaseReference myRef;
     Date date = new Date();
+    SimpleDateFormat dtFormat;
     Double imc;
     Double pesoIdeal;
     EditText nome;
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         fem = findViewById(R.id.radioFeminino);
         tituloResultado = findViewById(R.id.txResultado);
         txIdeal = findViewById(R.id.txIdeal);
+        dtFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         iniciarFirebase();
         altura.addTextChangedListener(watcher);
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         Integer.parseInt(idade.getText().toString()),
                         Double.parseDouble(altura.getText().toString()),
                         Double.parseDouble(imc.toString()),
-                        date.getTime(),
+                        dtFormat.format(date.getTime()),
                         Double.parseDouble(pesoIdeal.toString()));
                 myRef.child("Pessoa").child(pessoa.getUuid()).setValue(pessoa);
             }
