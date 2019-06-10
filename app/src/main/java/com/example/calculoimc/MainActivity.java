@@ -30,7 +30,8 @@ import java.util.UUID;
 
 //TODO: Máscara na Altura.
 public class MainActivity extends AppCompatActivity {
-    Button bt;
+    Button btCalcula;
+    Button btApaga;
     DatabaseReference myRef;
     Date date = new Date();
     SimpleDateFormat dtFormat;
@@ -52,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bt = findViewById(R.id.btCalcula);
+        btCalcula = findViewById(R.id.btCalcula);
+        btApaga = findViewById(R.id.btApaga);
         nome = findViewById(R.id.inputNome);
         idade = findViewById(R.id.inputIdade);
         altura = findViewById(R.id.inputAltura);
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         iniciarFirebase();
         altura.addTextChangedListener(watcher);
         peso.addTextChangedListener(watcher);
-        bt.setOnClickListener(new View.OnClickListener() {
+        btCalcula.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calculaIMC();
@@ -81,6 +83,12 @@ public class MainActivity extends AppCompatActivity {
                         Double.parseDouble(pesoIdeal.toString()),
                         genero);
                 myRef.child("Pessoa").child(pessoa.getUuid()).setValue(pessoa);
+            }
+        });
+        btApaga.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reiniciaActivity();
             }
         });
     }
@@ -147,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
             break;
         }
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(bt.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+        imm.hideSoftInputFromWindow(btCalcula.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
     }
     private final TextWatcher watcher = new TextWatcher() {
@@ -163,7 +171,8 @@ public class MainActivity extends AppCompatActivity {
                     peso.getText().toString().length() == 0 ||
                     nome.getText().toString().length() == 0 ||
                     idade.getText().toString().length() == 0)) {
-                bt.setEnabled(true);
+                btCalcula.setEnabled(true);
+                btApaga.setEnabled(true);
             }
         }
     };
@@ -196,5 +205,10 @@ public class MainActivity extends AppCompatActivity {
     private void iniciarFirebase() {
         database = FirebaseDatabase.getInstance();
         myRef = database.getReference();
+    }
+    private void reiniciaActivity(){
+        Intent it = new Intent(this, MainActivity.class);
+        finish();
+        startActivity(it);
     }
 }
