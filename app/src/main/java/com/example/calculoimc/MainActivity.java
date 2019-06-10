@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference myRef;
     Date date = new Date();
     Double imc;
-    double ps;
+    Double pesoIdeal;
     EditText nome;
     EditText idade;
     EditText altura;
@@ -69,11 +69,12 @@ public class MainActivity extends AppCompatActivity {
                 calculaIMC();
                 Pessoa pessoa = new Pessoa(UUID.randomUUID().toString(),
                         nome.getText().toString(),
-                        peso.getText().toString(),
-                        idade.getText().toString(),
-                        altura.getText().toString(),
-                        imc.toString(),
-                        date.getTime());
+                        Double.parseDouble(peso.getText().toString()),
+                        Integer.parseInt(idade.getText().toString()),
+                        Double.parseDouble(altura.getText().toString()),
+                        Double.parseDouble(imc.toString()),
+                        date.getTime(),
+                        Double.parseDouble(pesoIdeal.toString()));
                 myRef.child("Pessoa").child(pessoa.getUuid()).setValue(pessoa);
             }
         });
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         if(imc > 17 && imc <= 18.49){
             String texto1 = "IMC:" + imc;
             Spannable spannable = new SpannableString(texto1 + "\nAbaixo do peso");
-            spannable.setSpan(new ForegroundColorSpan(Color.YELLOW),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannable.setSpan(new ForegroundColorSpan(Color.rgb(150, 200 ,100)),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
         if(imc >= 18.5 && imc <= 24.99){
@@ -126,15 +127,15 @@ public class MainActivity extends AppCompatActivity {
         }
         switch (rd.getCheckedRadioButtonId()){
             case R.id.radioMasculino:
-                ps = (72.7 * Double.parseDouble(altura.getText().toString()) -58);
-                ps = (double) Math.round(ps * 100) / 100;
-                txIdeal.setText("Peso Ideal:"+ ps);
+                pesoIdeal = (72.7 * (Double.parseDouble(altura.getText().toString())/100) -58);
+                pesoIdeal = (double) Math.round(pesoIdeal * 100) / 100;
+                txIdeal.setText("Peso Ideal:"+ pesoIdeal);
                 txIdeal.setVisibility(View.VISIBLE);
             break;
             case R.id.radioFeminino:
-                ps = (62.1 * (Double.parseDouble(altura.getText().toString())/100)  - 44.7);
-                ps = (double) Math.round(ps * 100) / 100;
-                txIdeal.setText("Peso Ideal:"+ ps);
+                pesoIdeal = (62.1 * (Double.parseDouble(altura.getText().toString())/100)  - 44.7);
+                pesoIdeal = (double) Math.round(pesoIdeal * 100) / 100;
+                txIdeal.setText("Peso Ideal:"+ pesoIdeal);
                 txIdeal.setVisibility(View.VISIBLE);
             break;
         }
@@ -171,14 +172,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent it;
         switch (item.getItemId()){
             case R.id.idConsultaIMC:
-                    Intent it = new Intent(this, ConsultaActivity.class);
+                    it = new Intent(this, ConsultaActivity.class);
                     startActivity(it);
                 return true;
-
             case R.id.idCalculaIMC:
-//                calculaIMC();
+                    it = new Intent(this, MainActivity.class);
+                    startActivity(it);
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
