@@ -77,7 +77,7 @@ public class ConsultaActivity extends AppCompatActivity {
         if (palavra.equals("")){
             query = databaseReference.child("Pessoa").orderByChild("nome");
         }else{
-            query = databaseReference.child("Pessoa").orderByChild("nome").startAt(palavra).endAt(palavra+"\uf0ff");
+            query = databaseReference.child("Pessoa").orderByChild("nome").startAt(palavra.toUpperCase()).endAt(palavra.toLowerCase()+"\uf0ff");
         }
         query.addValueEventListener(new ValueEventListener() {
             @Override
