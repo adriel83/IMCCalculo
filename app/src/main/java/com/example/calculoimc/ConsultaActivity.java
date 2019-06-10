@@ -22,6 +22,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ConsultaActivity extends AppCompatActivity {
@@ -59,12 +61,11 @@ public class ConsultaActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                listaPessoas.clear();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                listaPessoas.clear();
                 String palavra = nomePesquisa.getText().toString();
                 pesquisarPalavra(palavra);
             }
@@ -85,6 +86,13 @@ public class ConsultaActivity extends AppCompatActivity {
                     Pessoa p = objSnap.getValue(Pessoa.class);
                     listaPessoas.add(p);
                 }
+                Collections.sort(listaPessoas, new Comparator<Pessoa>() {
+                    @Override
+                    public int compare(Pessoa pessoa2, Pessoa pessoa1)
+                    {
+                        return  pessoa1.getDataCadastro().compareTo(pessoa2.getDataCadastro());
+                    }
+                });
                 arrayAdapter = new ArrayAdapter<Pessoa>(ConsultaActivity.this, android.R.layout.simple_list_item_1, listaPessoas);
                 listView.setAdapter(arrayAdapter);
             }
