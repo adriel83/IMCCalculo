@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference myRef;
     Date date = new Date();
     Double imc;
+    double ps;
     EditText nome;
     EditText idade;
     EditText altura;
@@ -123,17 +124,19 @@ public class MainActivity extends AppCompatActivity {
             spannable.setSpan(new ForegroundColorSpan(Color.rgb(175, 0 ,0)),texto1.length(), spannable.length(),  Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             tituloResultado.setText(spannable, TextView.BufferType.SPANNABLE);
         }
-        if(rd.getCheckedRadioButtonId() == mas.getId()){
-            double ps = (72.7 * Double.parseDouble(altura.getText().toString()) -58);
-            ps = (double) Math.round(ps * 100) / 100;
-            txIdeal.setText("Peso Ideal:"+ ps);
-            txIdeal.setVisibility(View.VISIBLE);
-        }
-        if(rd.getCheckedRadioButtonId() == fem.getId()){
-            double ps = (62.1 * (Double.parseDouble(altura.getText().toString())/100)  - 44.7);
-            ps = (double) Math.round(ps * 100) / 100;
-            txIdeal.setText("Peso Ideal:"+ ps);
-            txIdeal.setVisibility(View.VISIBLE);
+        switch (rd.getCheckedRadioButtonId()){
+            case R.id.radioMasculino:
+                ps = (72.7 * Double.parseDouble(altura.getText().toString()) -58);
+                ps = (double) Math.round(ps * 100) / 100;
+                txIdeal.setText("Peso Ideal:"+ ps);
+                txIdeal.setVisibility(View.VISIBLE);
+            break;
+            case R.id.radioFeminino:
+                ps = (62.1 * (Double.parseDouble(altura.getText().toString())/100)  - 44.7);
+                ps = (double) Math.round(ps * 100) / 100;
+                txIdeal.setText("Peso Ideal:"+ ps);
+                txIdeal.setVisibility(View.VISIBLE);
+            break;
         }
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(bt.getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
