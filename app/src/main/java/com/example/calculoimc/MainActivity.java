@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton fem;
     TextView tituloResultado;
     TextView txIdeal;
+    String genero;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
                         Double.parseDouble(altura.getText().toString()),
                         Double.parseDouble(imc.toString()),
                         dtFormat.format(date.getTime()),
-                        Double.parseDouble(pesoIdeal.toString()));
+                        Double.parseDouble(pesoIdeal.toString()),
+                        genero);
                 myRef.child("Pessoa").child(pessoa.getUuid()).setValue(pessoa);
             }
         });
@@ -130,12 +132,14 @@ public class MainActivity extends AppCompatActivity {
         }
         switch (rd.getCheckedRadioButtonId()){
             case R.id.radioMasculino:
+                genero = "Masculino";
                 pesoIdeal = (72.7 * (Double.parseDouble(altura.getText().toString())/100) -58);
                 pesoIdeal = (double) Math.round(pesoIdeal * 100) / 100;
                 txIdeal.setText("Peso Ideal:"+ pesoIdeal);
                 txIdeal.setVisibility(View.VISIBLE);
             break;
             case R.id.radioFeminino:
+                genero = "Feminino";
                 pesoIdeal = (62.1 * (Double.parseDouble(altura.getText().toString())/100)  - 44.7);
                 pesoIdeal = (double) Math.round(pesoIdeal * 100) / 100;
                 txIdeal.setText("Peso Ideal:"+ pesoIdeal);

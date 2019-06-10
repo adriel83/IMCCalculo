@@ -12,6 +12,7 @@ public class Pessoa {
     private String nome;
     private String uuid;
     private String dataCadastro;
+    private String genero;
 
     public String toString(){
         return "Nome: " + nome +
@@ -24,7 +25,7 @@ public class Pessoa {
 
     }
 
-    Pessoa(String uuid, String nome, double peso, int idade, double altura, double imc, String dataCadastro, double pesoIdeal){
+    Pessoa(String uuid, String nome, double peso, int idade, double altura, double imc, String dataCadastro, double pesoIdeal, String genero){
         this.uuid = uuid;
         this.nome = nome;
         this.imc = imc;
@@ -33,6 +34,15 @@ public class Pessoa {
         this.idade = idade;
         this.dataCadastro = dataCadastro;
         this.pesoIdeal = pesoIdeal;
+        this.genero = genero;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
     }
 
     public String getNome() {
