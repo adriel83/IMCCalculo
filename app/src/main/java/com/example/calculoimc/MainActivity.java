@@ -20,11 +20,8 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -33,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     Button btCalcula;
     Button btApaga;
     DatabaseReference myRef;
-    Date date = new Date();
-    SimpleDateFormat dtFormat;
     Double imc;
     Double pesoIdeal;
     EditText nome;
@@ -48,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tituloResultado;
     TextView txIdeal;
     String genero;
+    Date dataCadastro;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         fem = findViewById(R.id.radioFeminino);
         tituloResultado = findViewById(R.id.txResultado);
         txIdeal = findViewById(R.id.txIdeal);
-        dtFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         iniciarFirebase();
         altura.addTextChangedListener(watcher);
@@ -78,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
                         Double.parseDouble(peso.getText().toString()),
                         Integer.parseInt(idade.getText().toString()),
                         Double.parseDouble(altura.getText().toString()),
-                        Double.parseDouble(imc.toString()),
-                        dtFormat.format(date.getTime()),
+                        imc,
                         Double.parseDouble(pesoIdeal.toString()),
-                        genero);
+                        genero,
+                        dataCadastro = new Date());
                 myRef.child("Pessoa").child(pessoa.getUuid()).setValue(pessoa);
             }
         });
